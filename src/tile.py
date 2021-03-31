@@ -1,34 +1,77 @@
 import random
 
-# TODO: Change or remove these static globals.
+# ! Headings (30,45,90 deg increments):
+E = 0
+ENE = 30
+NE = 45
+NNE = 60
+N = 90
+NNW = 120
+NW = 135
+WNW = 150
+W = 180
+WSW = 210
+SW = 225
+SSW = 240
+S = 270
+SSE = 300
+SE = 315
 
-# Headings:
-E = 0       # East.
-N = 90      # North.
-W = 180     # West.
-S = 270     # South.
+# ! Turtle Commands:
+ANGLE = 'setheading'
+CIRCLE = 'circle'
+DOWN = 'pendown'
+FORWARD = 'forward'
+GOTO = 'goto'
+LEFT = 'left'
+RIGHT = 'right'
+UP = 'penup'
 
-# Measures:
-H = 180     # Half circle.
-J = 13      # Large arc length, M+O.
-M = 6       # Offset between endpoints on same side.
-O = 7       # Offset from corner of tile to endpoint.
-Q = 90      # Quarter circle.
-T = 20      # Tile length/width.
-V = 3       # Half of M, for loop paths with delta of 1.
+# ! Tile Data:
+TILE = {
+    'hexagon': {                # ! Not implemented yet.
+        'angle': 30,            # ? Angle of each corner.
+        'sides': 6,             # ? Number of sides.
+    },
+    'square': {                 # ! Square Tile Data
+        'angle': 90,            # ? Angle of each corner.
+        'delta': [              # ? Distance between start and end point.
+            None,
+            [(3, 180)],         # * Delta 1 (Turn around path).
+            [(7, 90), 6],       # * Delta 2 (Backward J arc path).
+            [(13, 90)],         # * Delta 3 (C arc path).
+            [                   # * Delta 4 (Diagonal path).
+                [
+                    (6, -20),   # 1 to 5.
+                    (-6, -20),  # 2 to 6.
+                    (-20, -6),  # 3 to 7.
+                    (-20, 6),   # 4 to 8.
+                    (-6, 20),   # 5 to 1.
+                    (6, 20),    # 6 to 2.
+                    (20, 6),    # 7 to 3.
+                    (20, -6),   # 8 to 4.
+                ]
+            ],
+            [20],               # * Delta 5 (Straigh path).
+            [6, (-7, 90)],      # * Delta 6 (J arc path).
+            [(-7, 90)],         # * Delta 7 (Corner arc path).
+        ],
+        'home': {               # ? Homing points and headings.
+            X = [0, 7, 13, 20, 20, 13, 7, 0, 0] # X offset.
+            Y = [0, 0, 0, 7, 13, 20, 20, 13, 7] # Y offset.
+            Z = [E, S, S, W, W, N, N, E, E]     # Heading.
+        },
+        'length': 20,           # ? Length of each side.
+        'sides': 4,             # ? Number of sides.
+    },
+    'triangle': {               # ! Not implemented yet.
+        'angle': 120,           # ? Angle of each corner.
+        'sides': 3,             # ? Number of sides.
+    },
+}
 
-# Turtle Commands:
-A = 'setheading'
-C = 'circle'
-D = 'pendown'
-F = 'forward'
-G = 'goto'
-L = 'left'
-R = 'right'
-U = 'penup'
-
-# ! Will be a config option for scale factor.
-scale = 3 # 20*3 = 60px
+# TODO: Will be a config option for scale factor.
+scale = 3
 
 
 class Tile():
@@ -74,7 +117,7 @@ class Tile():
         # Initalize the draw command to the top left corner of the tile.
         drawcmd = self.home()
         # Border.
-        drawcmd.extend([F, T, R, Q, F, T, R, Q, F, T, R, Q, F, T])
+        drawcmd.extend(BORDER)
         # 4 paths on the tile.
         drawcmd.extend(self.getPaths)
         # Return the drawcmd.
