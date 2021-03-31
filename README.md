@@ -31,6 +31,8 @@ My future vision for this game includes the following gameplay ideas:
 * A name generator for online play to add some amusement value while maintaining family friendly names.
 * Background graphics, sounds, and animations.
 * Possibly even play with odd shaped tiles that won't cleanly tesselate (like octogons or pentagons) by using pre-placed tiles that fill in the gaps.
+* Invisible tiles, where the paths are only shown when you enter the tile.
+* Possibly even 2.5d (think Qbert) or multi shaped tiles (hexagons made up of 6 triangle tiles for example).
 
 Shown below are some example screenshots of what some tiles would look like made using my [PTSG](https://github.com/enveezee/ptsg) program:
 ![Square Tiles](SquareTiles.png?raw=true "Square Tiles")
