@@ -34,6 +34,7 @@ My future vision for this game includes the following gameplay ideas:
 * Invisible tiles, where the paths are only shown when you enter the tile.
 * Possibly even 2.5d (think Qbert) or multi shaped tiles (hexagons made up of 6 triangle tiles for example).
 * Different randomization modes such as client-side, server-side, pre-game, per-turn, etc.
+* Possibly add alternate collision modes like drawing over a player's path rather than terminating upon colision (scoring mode difference).
 
 Shown below are some example screenshots of what some tiles would look like made using my [PTSG](https://github.com/enveezee/ptsg) program:
 ![Square Tiles](SquareTiles.png?raw=true "Square Tiles")
