@@ -9,6 +9,7 @@ This "clone" however while inspired by Entanglement is going to differ in severa
 * Initially I am only programming it to have 4 sided square tiles.
 * Its written in python using standard library.
 * Initially it will not be as flashy in graphics and sound, but will have a more elementary look and feel.
+* There will be actual players moving on the board (turtles).
 * Focus will be on adding gameplay variations, online multiplayer, etc.
 * It will run anywhere python runs.
   
