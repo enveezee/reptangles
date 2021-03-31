@@ -32,3 +32,5 @@ My future vision for this game includes the following gameplay ideas:
 * Possibly even play with odd shaped tiles that won't cleanly tesselate (like octogons or pentagons) by using pre-placed tiles that fill in the gaps.
 
 Shown below are some example screenshots of what some tiles would look like made using my [PTSG](https://github.com/enveezee/ptsg) program:
+![Square Tiles](SquareTiles.png?raw=true "Square Tiles")
+![Triangle Tiles](TriangleTiles.png?raw=true "Triangle Tiles")
