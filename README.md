@@ -43,4 +43,4 @@ Shown below are some example screenshots of what some tiles would look like made
 Screenshots of the Initial GUI design:
 ![Main Menu](MainWindow.png?raw=true "Main Menu")
 ![Game Options](GameOptions.png?raw=true "Game Options")
-![Game Screen](GameWidow.png?raw=true "Game Screen")
+![Game Screen](GameWindow.png?raw=true "Game Screen")
