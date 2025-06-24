@@ -7,98 +7,70 @@ class Board():
      This class gets istantiated by the Game class, contains all the turtles,
     coordinates, and the methods for actual canvas drawing.
     '''
-    def __init__(self, config, player):
-        self.board = config.board
-        self.player = player
-        self.tile = []      # List of all tiles on the board.
-        self.turtle = []    # List of all turtles.
+    def __init__(self, config, game):
+        self.config = config
+        self.game = game
+        self.tiles = {}  # {(x, y): Tile}
+        self.turtles = []
+        self.board_turtle = None
+        self.swap_turtle = None
+        self.active_canvas = None
+        self.viewport = (0, 0)  # Top-left of visible board
 
 
-    def createTurtles(self, canvas):
+    def createTurtles(self, board_canvas, swap_canvas):
         '''Create turtles for reptangles.
         
          Turtle 0 is the board turtle that draws tiles, turtles 1-4 are the
         player's turtles, and turtle 5 is the swap tile turtle.
         '''
-        for i in range(5):
-            # Append turtle to turtle list.
-            self.turtle.append(turtle.RawTurtle(canvas))
-
-            # Board turtles.
-            if i == 0: 
-
-                # Board and swap turtles are hidden and draw faster.
-                self.turtle[i].hideturtle()
-                self.turtle[i].speed('Fastest')
-
-            # Player turtles.
-            else:
-                # Player turtles are the player's are user-defined.
-                self.turtle[i].color()
-                self.turtle[i].shape()
-                self.turtle[i].speed()
+        # Player turtles
+        for i in range(self.config.players):
+            t = turtle.RawTurtle(board_canvas)
+            t.hideturtle()
+            t.speed('fastest')
+            self.turtles.append(t)
+        # Board turtle (for drawing tiles)
+        self.board_turtle = turtle.RawTurtle(board_canvas)
+        self.board_turtle.hideturtle()
+        self.board_turtle.speed('fastest')
+        self.active_canvas = board_canvas
+        # Swap turtle (for drawing swap tile)
+        self.swap_turtle = turtle.RawTurtle(swap_canvas)
+        self.swap_turtle.hideturtle()
+        self.swap_turtle.speed('fastest')
 
 
-    def drawCmd(self, turtle):
-        '''Execute the draw command with the specified turtle.'''
-        while self.drawcmd:
-            cmd = self.drawcmd.pop(0)
+    def show_board_turtle(self):
+        self.board_turtle.showturtle()
 
-            args = []
-            if cmd in [A, C, F, G, L, R]:
-                args.append(self.drawcmd.pop(0))
+    def hide_board_turtle(self):
+        self.board_turtle.hideturtle()
 
-            if cmd in [C, G]:
-                args.append(self.drawcmd.pop(0))
+    def move_board_turtle_to_canvas(self, canvas):
+        # Re-parent the board turtle to a different canvas
+        # (tkinter turtle does not support moving turtles between canvases directly,
+        # so you may need to destroy and recreate the turtle)
+        pass
 
-            turtleCmd = getattr(turtle, cmd)
+    def place_start_tile(self):
+        # Place the initial tile at the center of the board
+        pass
 
-            if args:
-                turtleCmd(*args)
-                continue
+    def place_tile(self):
+        # Place the selected tile on the board
+        pass
 
-            turtleCmd()
+    def rotate_tile(self, direction):
+        # Rotate the active tile
+        pass
 
+    def swap_tiles(self):
+        # Swap active and swap tile
+        pass
 
-    def drawPath(self, player):
-        '''Draw path with the player's turtle.
-         
-         player is the player number to draw current tile path with.
-        '''
-        start = self.coord['player'][player] #! FML
-
-
-        # Set the draw command for the tile the player is currently on.
-        self.drawcmd = self.tile[tile].getPath(coord['player'][player][1])
-
-        # Execute the draw command.
-        self.drawCmd(self.turtle[player])
-
-
-    def drawTile(self, tile=None, board=True):
-        '''Draw tile on a canvas at coords.
-        
-         board is set to False to draw on swap tile canvas.
-
-         tile is a Tile class object of the tile to draw, None to draw the
-        start tile.
-        '''
-        if tile:
-
-            # Set the draw command with a call to getPaths.
-            self.drawcmd = tile.getPaths()
-
-            # Check to see if we're drawing on the board or swap canvas.
-            if board:
-                self.drawCmd(self.turtle[0])    # Board canvas.
-
-            else:
-                self.drawCmd(self.turtle[5])    # Swap canvas.
-
-        else:   # TODO: Draw start tile.
-            pass
-
-    def moveTurtles(self):
-        '''Move the turtles along the paths.'''
+    # Edge scrolling logic
+    def scroll_board(self, dx, dy):
+        # Adjust viewport and redraw visible tiles
         pass
 

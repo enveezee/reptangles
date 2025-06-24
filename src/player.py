@@ -1,14 +1,9 @@
-
-
 class Player():
     '''Reptangles player class.'''
-    def __init__(self, players):
-        for i in range(1, players + 1):
-            setattr(self, f'{i}', {
-                    'color': [None, 'blue','red','green','yellow'][i],
-                    'name' : f'Player {i}',
-                    'moves': True,
-                    'score': 0,
-                }
-            )
+    def __init__(self, number, name, color):
+        self.number = number
+        self.name = name
+        self.color = color
+        self.score = 0
+        self.alive = True
 
