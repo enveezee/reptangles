@@ -39,3 +39,8 @@ My future vision for this game includes the following gameplay ideas:
 Shown below are some example screenshots of what some tiles would look like made using my [PTSG](https://github.com/enveezee/ptsg) program:
 ![Square Tiles](SquareTiles.png?raw=true "Square Tiles")
 ![Triangle Tiles](TriangleTiles.png?raw=true "Triangle Tiles")
+
+Screenshots of the Initial GUI design:
+![Main Menu](MainWindow.png?raw=true "Main Menu")
+![Game Options](GameOptions.png?raw=true "Game Options")
+![Game Screen](GameWidow.png?raw=true "Game Screen")
